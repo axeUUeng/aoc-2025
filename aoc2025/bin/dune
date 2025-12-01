@@ -1,0 +1,13 @@
+; bin/dune
+(executable
+ (name day01)
+ (public_name day01)
+ (libraries))
+
+; future days will be appended below by the CLI
+
+
+(executable
+ (name day02)
+ (public_name day02)
+ (libraries))
