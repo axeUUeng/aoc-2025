@@ -52,20 +52,11 @@ def save(year, day, content_type):
 def fetch_and_save(year, day):
     target_dir = day_dir(day)
     input_path = target_dir / "input.txt"
-    legacy_input_path = PYTHON_DIR / "input.txt"
-    legacy_problem_path = PYTHON_DIR / "problem.txt"
 
     if input_path.exists():
         print("\n🛷  Found input locally, using saved input 🛷 \n")
         with input_path.open() as file:
             return file.read()
-    elif legacy_input_path.exists():
-        print("\n🛷  Found legacy input in python/, copying to day folder 🛷 \n")
-        input_text = legacy_input_path.read_text()
-        input_path.write_text(input_text)
-        if legacy_problem_path.exists():
-            (target_dir / "problem.txt").write_text(legacy_problem_path.read_text())
-        return input_text
     else:
         print("\n🛷  Input not found, fetching 🛷 \n")
         problem_text = save(year, day, content_type="problem")
